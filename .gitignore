@@ -1,0 +1,19 @@
+# Build output
+bin/
+obj/
+*.o
+*.d
+*.exe
+*.stackdump
+
+# Generated documentation (run `make docs`)
+docs/html/
+
+# Data created at runtime by the program
+*.bin
+logs.txt
+
+# IDE files
+nbproject/private/
+.vscode/
+.idea/

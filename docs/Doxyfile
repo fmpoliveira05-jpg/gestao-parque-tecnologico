@@ -1,0 +1,17 @@
+# Doxygen configuration (run from the repository root with `make docs`).
+PROJECT_NAME           = "Gestão de Parque Tecnológico"
+PROJECT_BRIEF          = "Inventory and maintenance history of an organisation's IT equipment, written in C"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = src include README.md
+USE_MDFILE_AS_MAINPAGE = README.md
+FILE_PATTERNS          = *.c *.h *.md
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES
+HTML_OUTPUT            = html
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = YES
