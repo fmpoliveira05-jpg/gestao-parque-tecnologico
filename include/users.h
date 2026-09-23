@@ -40,8 +40,7 @@
 #define ERROR_USER_AGROUP "\nAction refused. This user is INACTIVE."
 #define ERROR_USERS_NOT_FOUND "\nThere are no users."
 #define ERROR_USER_WITHOUT_EQUIPMENT_DEL "\nOnly users without equipment can be removed."
-#define ERROR_INACTIVE_USER_DISSOCIATE_USER_DEL "The user is INACTIVE for now and all equipment associated with him has been dissociated."
-#define ERROR_INACTIVE_USER_DEL "\nIt is not possible to remove INACTIVE users."
+#define USER_INACTIVE_KEEPS_EQUIPMENT "The user is now INACTIVE: they keep the equipment already assigned but cannot receive new equipment."
 
 
 /**
@@ -114,12 +113,10 @@ void removeUsers(EquipmentList *equipment, UserList *users);
  * This function prompts the user to enter new details for an existing user, identified by the user ID.
  *
  * @param users A pointer to struct: UserList.
- * @param equipment A pointer to struct: EquipmentList.
- * 
- * @note This function unlinks an inactive user from all devices to which they are linked,
- * if the user is placed as inactive.
+ *
+ * @note An inactive user keeps the equipment already assigned but cannot receive new equipment.
  */
-void updateUsers(UserList *users, EquipmentList *equipment);
+void updateUsers(UserList *users);
 
 #endif /* USERS_H */
 

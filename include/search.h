@@ -17,7 +17,7 @@
 
 #include "types.h"
 
-#define MSG_GET_EQUIPMENT_POSITION_TO_VIEW_HISTORY "Enter the position of the Equipment to view its maintenance history: " // // referring to the equipment position in the listing
+#define MSG_GET_EQUIPMENT_ID_TO_VIEW_HISTORY "Enter the ID of the Equipment to view its maintenance history: "
 
 #define ERROR_VIEW_EQUIPMENT_MAINTENANCE_HISTORY "\nIt is not possible to list the maintenance history of FOR RECYCLING equipment."
 #define ERROR_USER_NOT_FOUND "\nThe user does not exist."

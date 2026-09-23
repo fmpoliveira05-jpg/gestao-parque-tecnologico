@@ -77,7 +77,7 @@ A versão entregue funcionava nas demonstrações, mas tinha problemas que apare
 - ***Buffer overflow* nas manutenções** – ao registar uma manutenção só se aumentava a capacidade do *primeiro* equipamento da lista, e ao carregar do ficheiro só se reservavam 3 posições. Um equipamento com mais de 3 manutenções escrevia fora da memória.
 - **Fugas de memória** – os históricos de manutenção nunca eram libertados no fim.
 - **Identificador máximo** – a função que o calculava lia uma posição a mais do vetor e falhava quando os IDs não estavam por ordem.
-- **Regras de negócio** – era possível ficar com duas siglas iguais ao editar um utilizador, inativar um utilizador não lhe retirava os equipamentos e os IDs deixavam de ser sequenciais quando uma inserção falhava.
+- **Regras de negócio** – era possível ficar com duas siglas iguais ao editar um utilizador e os IDs deixavam de ser sequenciais quando uma inserção falhava.
 - **Entrada de dados** – aceitavam-se datas como 31/02 ou datas futuras, e fechar a entrada (Ctrl+D) deixava o programa num ciclo infinito.
 
 Aproveitei também para separar os tipos de dados num cabeçalho próprio, juntar a lógica das datas num módulo, eliminar código repetido na apresentação dos dados, trocar o projeto NetBeans por um `Makefile` simples e acrescentar os testes.

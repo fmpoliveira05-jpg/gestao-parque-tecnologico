@@ -54,7 +54,7 @@ Pode registar-se as manutenções que forem precisas; a memória cresce automati
 
 - **List Free Equipment** – equipamentos sem utilizador, agrupados por categoria;
 - **List Equipment For Recycling** – o que está marcado para reciclagem;
-- **List Equipment Maintenance History By Date** – escolhe-se o equipamento pela posição na lista e as manutenções aparecem da mais antiga para a mais recente.
+- **List Equipment Maintenance History By Date** – escolhe-se o equipamento pelo ID e as manutenções aparecem da mais antiga para a mais recente.
 
 `4 – Search Equipment`:
 
@@ -70,9 +70,8 @@ Equipamentos para reciclagem nunca aparecem nas pesquisas.
 
 ## 6. Remover ou inativar utilizadores
 
-- Um utilizador sem equipamentos pode ser removido.
-- Se tiver equipamentos, a aplicação propõe inativá-lo. Um utilizador inativo perde os equipamentos que tinha e deixa de poder receber novos, mas pode voltar a ser ativado na edição.
-- Utilizadores inativos não podem ser removidos.
+- Um utilizador sem equipamentos pode ser removido (esteja ativo ou inativo).
+- Se tiver equipamentos, não pode ser removido: a aplicação propõe inativá-lo. Um utilizador inativo mantém os equipamentos que já tinha, mas deixa de poder receber novos; pode voltar a ser ativado na edição.
 
 ## Perguntas frequentes
 

@@ -198,7 +198,12 @@ void listMaintenanceByDate(EquipmentList equipment) {
         return;
     }
     listEquipmentExceptForRecycling(equipment);
-    pos = getInt(1, equipment.equipmentCount, MSG_GET_EQUIPMENT_POSITION_TO_VIEW_HISTORY);
+    /* The listing shows equipment IDs, so the user is asked for an ID (positions change after removals). */
+    pos = searchEquipmentFromId(equipment, getInt(1, searchMaxEquipmentId(equipment), MSG_GET_EQUIPMENT_ID_TO_VIEW_HISTORY)) + 1;
+    if (pos == 0) {
+        puts(ERROR_EQUIPMENT_NOT_FOUND);
+        return;
+    }
     if (equipment.equipment[pos - 1].equipmentStatus == FOR_RECYCLING_STATUS_VALUE) {
         puts(ERROR_VIEW_EQUIPMENT_MAINTENANCE_HISTORY);
         return;

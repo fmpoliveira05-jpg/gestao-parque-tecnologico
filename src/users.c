@@ -33,17 +33,6 @@ static int acronymInUseByOther(const UserList *users, const char *acronym, int i
     return 0;
 }
 
-/**
- * @brief Removes the given user from every equipment that is assigned to them.
- */
-static void dissociateUserFromEquipment(EquipmentList *equipment, int userId) {
-    int i;
-    for (i = 0; i < equipment->equipmentCount; i++) {
-        if (equipment->equipment[i].userId.id == userId) {
-            equipment->equipment[i].userId.id = NO_USER;
-        }
-    }
-}
 
 
 
@@ -67,7 +56,7 @@ void menuForUsers(EquipmentList *equipment, UserList *users) {
                 break;
             case 2:
                 logMessage("Edit User", FILENAME_LOGS);
-                updateUsers(users, equipment);
+                updateUsers(users);
                 listActiveUsers(*users);
                 break;
             case 3:
@@ -139,21 +128,19 @@ void removeUsers(EquipmentList *equipment, UserList *users) {
         puts(ERROR_USER_NOT_FOUND);
         return;
     }
-    if (users->users[pos].userStatus == INACTIVE_STATUS_VALUE) {
-        puts(ERROR_INACTIVE_USER_DEL);
-        return;
-    }
     for (i = 0; i < equipment->equipmentCount && !hasEquipment; i++) {
         hasEquipment = equipment->equipment[i].userId.id == users->users[pos].userId.id;
     }
     if (hasEquipment) {
-        /* A user with equipment cannot be removed; the brief only allows making them inactive. */
+        /* A user with equipment cannot be removed; the brief only allows making them inactive.
+         * An inactive user keeps the equipment already assigned but cannot receive new equipment. */
         puts(ERROR_USER_WITHOUT_EQUIPMENT_DEL);
-        op = getChar(CHANGE_STATUS_QUESTION);
-        if (op == 'y' || op == 'Y') {
-            users->users[pos].userStatus = INACTIVE_STATUS_VALUE;
-            dissociateUserFromEquipment(equipment, users->users[pos].userId.id);
-            puts(ERROR_INACTIVE_USER_DISSOCIATE_USER_DEL);
+        if (users->users[pos].userStatus == ACTIVE_STATUS_VALUE) {
+            op = getChar(CHANGE_STATUS_QUESTION);
+            if (op == 'y' || op == 'Y') {
+                users->users[pos].userStatus = INACTIVE_STATUS_VALUE;
+                puts(USER_INACTIVE_KEEPS_EQUIPMENT);
+            }
         }
         return;
     }
@@ -165,7 +152,7 @@ void removeUsers(EquipmentList *equipment, UserList *users) {
     puts(USER_DEL);
 }
 
-void updateUsers(UserList *users, EquipmentList *equipment) {
+void updateUsers(UserList *users) {
     int id, pos;
     char acronym[USER_ACRONYM_MAX_LENGTH];
     if (users->userCount == 0) {
@@ -183,9 +170,6 @@ void updateUsers(UserList *users, EquipmentList *equipment) {
         }
         strcpy(users->users[pos].acronym, acronym);
         readUser(&users->users[pos]);
-        if (users->users[pos].userStatus == INACTIVE_STATUS_VALUE) {
-            dissociateUserFromEquipment(equipment, users->users[pos].userId.id);
-        }
         puts(USER_UPDATE);
     } else {
         puts(ERROR_USER_NOT_FOUND);
